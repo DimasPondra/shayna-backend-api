@@ -17,7 +17,7 @@ class File extends Model
     /** Acessor */
     public function getLocationFileAttribute()
     {
-        return 'file/' . $this->location . '/' . $this->name;
+        return 'public/file/' . $this->location . '/' . $this->name;
     }
 
     public function getShowFileAttribute()

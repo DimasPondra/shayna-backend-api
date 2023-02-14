@@ -24,4 +24,11 @@ class Product extends Model
     {
         return $this->belongsTo(File::class);
     }
+
+    /** Acessor */
+    public function getFormatPriceAttribute()
+    {
+        return number_format($this->price, 0, ',', '.');
+    }
+
 }

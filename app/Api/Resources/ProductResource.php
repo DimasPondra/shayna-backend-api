@@ -12,7 +12,10 @@ class ProductResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'price' => $this->price
+            'price' => $this->price,
+            'product_category_id' => $this->product_category_id,
+            'file_id' => $this->file_id,
+            'file_url' => $this->file->show_file
         ];
     }
 }

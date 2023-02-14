@@ -15,7 +15,7 @@ class ProductResourceCollection extends ResourceCollection
                     'id' => $product->id,
                     'name' => $product->name,
                     'slug' => $product->slug,
-                    'price' => $product->price
+                    'price' => 'Rp '. $product->format_price
                 ];
             })
         ];
