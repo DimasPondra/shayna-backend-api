@@ -11,6 +11,7 @@ use App\Models\ProductCategory;
 use App\Repositories\ProductCategoryRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ProductCategoryController extends Controller
 {
@@ -33,7 +34,11 @@ class ProductCategoryController extends Controller
         try {
             DB::beginTransaction();
 
-            $data = $request->only(['name']);
+            $request->merge([
+                'slug' => Str::slug($request->name)
+            ]);
+
+            $data = $request->only(['name', 'slug']);
 
             $productCategory = new ProductCategory();
             $this->productCategoryRepository->store($productCategory->fill($data));
@@ -62,7 +67,11 @@ class ProductCategoryController extends Controller
         try {
             DB::beginTransaction();
 
-            $data = $request->only(['name']);
+            $request->merge([
+                'slug' => Str::slug($request->name)
+            ]);
+
+            $data = $request->only(['name', 'slug']);
 
             $this->productCategoryRepository->store($productCategory->fill($data));
 
@@ -80,7 +89,7 @@ class ProductCategoryController extends Controller
         ], 201);
     }
 
-    public function delete(ProductCategory $productCategory)
+    public function destroy(ProductCategory $productCategory)
     {
         try {
             DB::beginTransaction();

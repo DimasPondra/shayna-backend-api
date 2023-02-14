@@ -13,7 +13,8 @@ class ProductCategoryResourceCollection extends ResourceCollection
 
                 return [
                     'id' => $productCategory->id,
-                    'name' => $productCategory->name
+                    'name' => $productCategory->name,
+                    'slug' => $productCategory->slug
                 ];
             })
         ];

@@ -30,7 +30,7 @@ Route:: prefix('product-categories')->group(function () {
     Route::post('store', [ProductCategoryController::class, 'store']);
     Route::get('{productCategory}/show', [ProductCategoryController::class, 'show']);
     Route::patch('{productCategory}/update', [ProductCategoryController::class, 'update']);
-    Route::delete('{productCategory}/delete', [ProductCategoryController::class, 'delete']);
+    Route::delete('{productCategory}/delete', [ProductCategoryController::class, 'destroy']);
 });
 
 Route::prefix('products')->group(function () {
