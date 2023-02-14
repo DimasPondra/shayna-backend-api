@@ -2,6 +2,7 @@
 
 use App\Api\Controllers\FileController;
 use App\Api\Controllers\ProductCategoryController;
+use App\Api\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,4 +31,12 @@ Route:: prefix('product-categories')->group(function () {
     Route::get('{productCategory}/show', [ProductCategoryController::class, 'show']);
     Route::patch('{productCategory}/update', [ProductCategoryController::class, 'update']);
     Route::delete('{productCategory}/delete', [ProductCategoryController::class, 'delete']);
+});
+
+Route::prefix('products')->group(function () {
+    Route::get('/', [ProductController::class, 'index']);
+    Route::post('store', [ProductController::class, 'store']);
+    Route::get('{product}/show', [ProductController::class, 'show']);
+    Route::patch('{product}/update', [ProductController::class, 'update']);
+    Route::delete('{product}/delete', [ProductController::class, 'destroy']);
 });
