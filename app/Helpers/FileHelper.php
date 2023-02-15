@@ -17,9 +17,9 @@ class FileHelper
                 $extention = $file->getClientOriginalExtension();
 
                 // Define the path by which we will store the new image
-                $path = 'public/file/' . $filename . '.' . $extention;
+                $path = 'file/' . $filename . '.' . $extention;
                 if (isset($directory)) {
-                    $path = 'public/file/' . $directory . '/' . $filename . '.' . $extention;
+                    $path = 'file/' . $directory . '/' . $filename . '.' . $extention;
                 }
 
                 // Store image
