@@ -1,5 +1,6 @@
 <?php
 
+use App\Api\Controllers\AuthController;
 use App\Api\Controllers\FileController;
 use App\Api\Controllers\ProductCategoryController;
 use App\Api\Controllers\ProductController;
@@ -20,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('login', [AuthController::class, 'login']);
 
 Route::prefix('files')->group(function () {
     Route::post('store', [FileController::class, 'store']);
