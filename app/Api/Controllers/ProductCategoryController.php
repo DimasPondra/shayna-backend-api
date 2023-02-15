@@ -24,7 +24,12 @@ class ProductCategoryController extends Controller
 
     public function index(Request $request)
     {
-        $productCategories =  $this->productCategoryRepository->get();
+        $productCategories =  $this->productCategoryRepository->get([
+            'search' => [
+                'name' => $request->name
+            ],
+            'paginate' => $request->per_page
+        ]);
 
         return new ProductCategoryResourceCollection($productCategories);
     }
