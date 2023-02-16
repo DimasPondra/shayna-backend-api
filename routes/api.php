@@ -24,22 +24,27 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('login', [AuthController::class, 'login']);
 
-Route::prefix('files')->group(function () {
-    Route::post('store', [FileController::class, 'store']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('logout', [AuthController::class, 'logout']);
+
+    Route::prefix('files')->group(function () {
+        Route::post('store', [FileController::class, 'store']);
+    });
+
+    Route:: prefix('product-categories')->group(function () {
+        Route::get('/', [ProductCategoryController::class, 'index']);
+        Route::post('store', [ProductCategoryController::class, 'store']);
+        Route::get('{productCategory}/show', [ProductCategoryController::class, 'show']);
+        Route::patch('{productCategory}/update', [ProductCategoryController::class, 'update']);
+        Route::delete('{productCategory}/delete', [ProductCategoryController::class, 'destroy']);
+    });
+
+    Route::prefix('products')->group(function () {
+        Route::get('/', [ProductController::class, 'index']);
+        Route::post('store', [ProductController::class, 'store']);
+        Route::get('{product}/show', [ProductController::class, 'show']);
+        Route::patch('{product}/update', [ProductController::class, 'update']);
+        Route::delete('{product}/delete', [ProductController::class, 'destroy']);
+    });
 });
 
-Route:: prefix('product-categories')->group(function () {
-    Route::get('/', [ProductCategoryController::class, 'index']);
-    Route::post('store', [ProductCategoryController::class, 'store']);
-    Route::get('{productCategory}/show', [ProductCategoryController::class, 'show']);
-    Route::patch('{productCategory}/update', [ProductCategoryController::class, 'update']);
-    Route::delete('{productCategory}/delete', [ProductCategoryController::class, 'destroy']);
-});
-
-Route::prefix('products')->group(function () {
-    Route::get('/', [ProductController::class, 'index']);
-    Route::post('store', [ProductController::class, 'store']);
-    Route::get('{product}/show', [ProductController::class, 'show']);
-    Route::patch('{product}/update', [ProductController::class, 'update']);
-    Route::delete('{product}/delete', [ProductController::class, 'destroy']);
-});
