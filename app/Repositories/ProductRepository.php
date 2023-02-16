@@ -15,7 +15,14 @@ class ProductRepository
 
     public function get($params = [])
     {
-        $products = $this->model;
+        $products = $this->model
+            ->when(!empty($params['search']['name']), function ($query) use ($params) {
+                return $query->where('name', 'LIKE', '%' . $params['search']['name'] . '%');
+            });
+
+        if (!empty($params['paginate'])) {
+            return $products->paginate($params['paginate']);
+        }
 
         return $products->get();
     }

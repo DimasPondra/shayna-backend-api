@@ -24,7 +24,12 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
-        $products = $this->productRepository->get();
+        $products = $this->productRepository->get([
+            'search' => [
+                'name' => $request->name
+            ],
+            'paginate' => $request->per_page
+        ]);
 
         return new ProductResourceCollection($products);
     }
