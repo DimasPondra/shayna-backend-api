@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Api\Controllers;
+namespace App\Api\Controllers\Admin;
 
 use App\Api\Requests\LoginRequest;
 use App\Api\Resources\UserResource;
@@ -9,7 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class AuthController extends Controller
+class AdminAuthController extends Controller
 {
     public function login(LoginRequest $request)
     {

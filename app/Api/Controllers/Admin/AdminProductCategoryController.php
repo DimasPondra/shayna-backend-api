@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Api\Controllers;
+namespace App\Api\Controllers\Admin;
 
 use App\Api\Requests\ProductCategoryStoreRequest;
 use App\Api\Requests\ProductCategoryUpdateRequest;
@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class ProductCategoryController extends Controller
+class AdminProductCategoryController extends Controller
 {
     private $productCategoryRepository;
 

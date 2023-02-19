@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Api\Controllers;
+namespace App\Api\Controllers\Admin;
 
 use App\Api\Requests\ProductStoreRequest;
 use App\Api\Requests\ProductUpdateRequest;
@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class ProductController extends Controller
+class AdminProductController extends Controller
 {
     private $productRepository;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Api\Controllers;
+namespace App\Api\Controllers\Admin;
 
 use App\Api\Requests\FileStoreRequest;
 use App\Api\Resources\FileResourceCollection;
@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\File;
 use Illuminate\Support\Facades\DB;
 
-class FileController extends Controller
+class AdminFileController extends Controller
 {
     public function store(FileStoreRequest $request)
     {

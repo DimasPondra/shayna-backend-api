@@ -1,9 +1,9 @@
 <?php
 
-use App\Api\Controllers\AuthController;
-use App\Api\Controllers\FileController;
-use App\Api\Controllers\ProductCategoryController;
-use App\Api\Controllers\ProductController;
+use App\Api\Controllers\Admin\AdminAuthController;
+use App\Api\Controllers\Admin\AdminFileController;
+use App\Api\Controllers\Admin\AdminProductCategoryController;
+use App\Api\Controllers\Admin\AdminProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,29 +22,32 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('login', [AuthController::class, 'login']);
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('logout', [AuthController::class, 'logout']);
+Route::prefix('admin')->group(function () {
+    Route::post('login', [AdminAuthController::class, 'login']);
 
-    Route::prefix('files')->group(function () {
-        Route::post('store', [FileController::class, 'store']);
-    });
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('logout', [AdminAuthController::class, 'logout']);
 
-    Route:: prefix('product-categories')->group(function () {
-        Route::get('/', [ProductCategoryController::class, 'index']);
-        Route::post('store', [ProductCategoryController::class, 'store']);
-        Route::get('{productCategory}/show', [ProductCategoryController::class, 'show']);
-        Route::patch('{productCategory}/update', [ProductCategoryController::class, 'update']);
-        Route::delete('{productCategory}/delete', [ProductCategoryController::class, 'destroy']);
-    });
+        Route::prefix('files')->group(function () {
+            Route::post('store', [AdminFileController::class, 'store']);
+        });
 
-    Route::prefix('products')->group(function () {
-        Route::get('/', [ProductController::class, 'index']);
-        Route::post('store', [ProductController::class, 'store']);
-        Route::get('{product}/show', [ProductController::class, 'show']);
-        Route::patch('{product}/update', [ProductController::class, 'update']);
-        Route::delete('{product}/delete', [ProductController::class, 'destroy']);
+        Route:: prefix('product-categories')->group(function () {
+            Route::get('/', [AdminProductCategoryController::class, 'index']);
+            Route::post('store', [AdminProductCategoryController::class, 'store']);
+            Route::get('{productCategory}/show', [AdminProductCategoryController::class, 'show']);
+            Route::patch('{productCategory}/update', [AdminProductCategoryController::class, 'update']);
+            Route::delete('{productCategory}/delete', [AdminProductCategoryController::class, 'destroy']);
+        });
+
+        Route::prefix('products')->group(function () {
+            Route::get('/', [AdminProductController::class, 'index']);
+            Route::post('store', [AdminProductController::class, 'store']);
+            Route::get('{product}/show', [AdminProductController::class, 'show']);
+            Route::patch('{product}/update', [AdminProductController::class, 'update']);
+            Route::delete('{product}/delete', [AdminProductController::class, 'destroy']);
+        });
     });
 });
 
