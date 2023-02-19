@@ -18,6 +18,9 @@ class ProductRepository
         $products = $this->model
             ->when(!empty($params['search']['name']), function ($query) use ($params) {
                 return $query->where('name', 'LIKE', '%' . $params['search']['name'] . '%');
+            })
+            ->when(!empty($params['limit']), function ($query) use ($params) {
+                return $query->limit($params['limit']);
             });
 
         if (!empty($params['paginate'])) {
