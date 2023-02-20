@@ -8,14 +8,14 @@ class FileResourceCollection extends ResourceCollection
 {
     public function toArray($request)
     {
-        return [
-            'data' => $this->collection->transform(function ($file) use ($request) {
+        $data = [];
+        $data = $this->collection->transform(function ($file) use ($request) {
+            return [
+                'id' => $file->id,
+                'url' => $file->show_file
+            ];
+        });
 
-                return [
-                    'id' => $file->id,
-                    'url' => $file->show_file
-                ];
-            })
-        ];
+        return $data;
     }
 }

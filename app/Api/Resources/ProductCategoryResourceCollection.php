@@ -8,15 +8,15 @@ class ProductCategoryResourceCollection extends ResourceCollection
 {
     public function toArray($request)
     {
-        return [
-            'data' => $this->collection->transform(function ($productCategory) use ($request) {
+        $data = [];
+        $data = $this->collection->transform(function ($productCategory) use ($request) {
+            return [
+                'id' => $productCategory->id,
+                'name' => $productCategory->name,
+                'slug' => $productCategory->slug
+            ];
+        });
 
-                return [
-                    'id' => $productCategory->id,
-                    'name' => $productCategory->name,
-                    'slug' => $productCategory->slug
-                ];
-            })
-        ];
+        return $data;
     }
 }
