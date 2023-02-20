@@ -24,7 +24,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('client')->group(function () {
-    Route::get('products', [ClientProductController::class, 'index']);
+    Route::prefix('products')->group(function () {
+        Route::get('/', [ClientProductController::class, 'index']);
+        Route::get('{product:slug}', [ClientProductController::class, 'show']);
+    });
 });
 
 Route::prefix('admin')->group(function () {

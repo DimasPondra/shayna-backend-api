@@ -2,8 +2,10 @@
 
 namespace App\Api\Controllers\Client;
 
+use App\Api\Resources\ProductResource;
 use App\Api\Resources\ProductResourceCollection;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Repositories\ProductRepository;
 
 class ClientProductController extends Controller
@@ -22,5 +24,10 @@ class ClientProductController extends Controller
         ]);
 
         return new ProductResourceCollection($products);
+    }
+
+    public function show(Product $product)
+    {
+        return new ProductResource($product);
     }
 }

@@ -20,6 +20,11 @@ class ProductResourceCollection extends ResourceCollection
                 'category' => $this->when(
                     RequestHelper::doesQueryParamsHasValue($request->query('include'), 'category'),
                     (new ProductCategoryResource($product->productCategory))
+                ),
+
+                'file' => $this->when(
+                    RequestHelper::doesQueryParamsHasValue($request->query('include'), 'file'),
+                    (new FileResource($product->file))
                 )
             ];
         });
