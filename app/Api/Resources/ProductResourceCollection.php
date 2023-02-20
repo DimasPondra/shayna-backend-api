@@ -17,7 +17,10 @@ class ProductResourceCollection extends ResourceCollection
                 'slug' => $product->slug,
                 'price' => 'Rp '. $product->format_price,
 
-                'category' => new ProductCategoryResource($product->productCategory)
+                'category' => $this->when(
+                    RequestHelper::doesQueryParamsHasValue($request->query('include'), 'category'),
+                    (new ProductCategoryResource($product->productCategory))
+                )
             ];
         });
 

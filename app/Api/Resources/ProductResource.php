@@ -2,6 +2,7 @@
 
 namespace App\Api\Resources;
 
+use App\Helpers\RequestHelper;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductResource extends JsonResource
@@ -13,9 +14,16 @@ class ProductResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'price' => $this->price,
-            'product_category_id' => $this->product_category_id,
-            'file_id' => $this->file_id,
-            'file_url' => $this->file->show_file
+
+            'category' => $this->when(
+                RequestHelper::doesQueryParamsHasValue($request->query('include'), 'category'),
+                (new ProductCategoryResource($this->productCategory))
+            ),
+
+            'file' => $this->when(
+                RequestHelper::doesQueryParamsHasValue($request->query('include'), 'file'),
+                (new FileResource($this->file))
+            )
         ];
     }
 }
