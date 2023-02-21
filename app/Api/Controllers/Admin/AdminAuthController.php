@@ -25,7 +25,7 @@ class AdminAuthController extends Controller
             ], 403);
         }
 
-        $token = $user->createToken('authToken')->plainTextToken;
+        $token = $user->createToken('authToken', ['admin'])->plainTextToken;
 
         return response()->json([
             'user' => new UserResource($user),

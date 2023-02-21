@@ -13,6 +13,13 @@ class CartRepository
         $this->model = $model;
     }
 
+    public function get($params = [])
+    {
+        $carts = $this->model;
+
+        return $carts->get();
+    }
+
     public function store(Cart $cart)
     {
         $cart->save();

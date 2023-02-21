@@ -6,6 +6,7 @@ use App\Api\Requests\LoginRequest;
 use App\Api\Resources\UserResource;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class ClientAuthController extends Controller
@@ -24,11 +25,20 @@ class ClientAuthController extends Controller
             ], 403);
         }
 
-        $token = $user->createToken('authToken')->plainTextToken;
+        $token = $user->createToken('authToken', ['client'])->plainTextToken;
 
         return response()->json([
             'user' => new UserResource($user),
             'access_token' => $token
+        ]);
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->tokens()->delete();
+
+        return response()->json([
+            'message' => 'User successfully logged out.'
         ]);
     }
 }

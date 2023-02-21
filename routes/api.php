@@ -33,15 +33,20 @@ Route::prefix('client')->group(function () {
         Route::get('{product:slug}', [ClientProductController::class, 'show']);
     });
 
-    Route::prefix('carts')->middleware('auth:sanctum')->group(function () {
-        Route::post('store', [ClientCartController::class, 'store']);
+    Route::middleware('auth:sanctum', 'abilities:client')->group(function () {
+        Route::prefix('carts')->group(function () {
+            Route::get('/', [ClientCartController::class, 'index']);
+            Route::post('store', [ClientCartController::class, 'store']);
+        });
+
+        Route::post('logout', [ClientAuthController::class, 'logout']);
     });
 });
 
 Route::prefix('admin')->group(function () {
     Route::post('login', [AdminAuthController::class, 'login']);
 
-    Route::middleware('auth:sanctum')->group(function () {
+    Route::middleware('auth:sanctum', 'abilities:admin')->group(function () {
         Route::post('logout', [AdminAuthController::class, 'logout']);
 
         Route::prefix('files')->group(function () {

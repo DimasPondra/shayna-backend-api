@@ -3,6 +3,7 @@
 namespace App\Api\Controllers\Client;
 
 use App\Api\Requests\CartStoreRequest;
+use App\Api\Resources\CartResourceCollection;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Repositories\CartRepository;
@@ -16,6 +17,13 @@ class ClientCartController extends Controller
     public function __construct(CartRepository $cartRepository)
     {
         $this->cartRepository = $cartRepository;
+    }
+
+    public function index(Request $request)
+    {
+        $carts = $this->cartRepository->get();
+
+        return new CartResourceCollection($carts);
     }
 
     public function store(CartStoreRequest $request)
