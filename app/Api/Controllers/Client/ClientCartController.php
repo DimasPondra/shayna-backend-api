@@ -21,7 +21,9 @@ class ClientCartController extends Controller
 
     public function index(Request $request)
     {
-        $carts = $this->cartRepository->get();
+        $carts = $this->cartRepository->get([
+            'user_id' => auth()->id()
+        ]);
 
         return new CartResourceCollection($carts);
     }
