@@ -27,6 +27,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('client')->group(function () {
     Route::post('login', [ClientAuthController::class, 'login']);
+    Route::post('register', [ClientAuthController::class, 'register']);
 
     Route::prefix('products')->group(function () {
         Route::get('/', [ClientProductController::class, 'index']);

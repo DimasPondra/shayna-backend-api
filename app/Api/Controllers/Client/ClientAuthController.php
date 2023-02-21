@@ -3,14 +3,24 @@
 namespace App\Api\Controllers\Client;
 
 use App\Api\Requests\LoginRequest;
+use App\Api\Requests\RegisterRequest;
 use App\Api\Resources\UserResource;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class ClientAuthController extends Controller
 {
+    private $userRepository;
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
     public function login(LoginRequest $request)
     {
         $user = User::where('email', $request->email)->first();
@@ -40,5 +50,33 @@ class ClientAuthController extends Controller
         return response()->json([
             'message' => 'User successfully logged out.'
         ]);
+    }
+
+    public function register(RegisterRequest $request)
+    {
+        try {
+            DB::beginTransaction();
+
+            $request->merge([
+                'password' => bcrypt($request->password)
+            ]);
+
+            $data = $request->only(['name', 'email', 'password']);
+
+            $user = new User();
+            $this->userRepository->store($user->fill($data));
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return response()->json([
+                'message' => 'Something went wrong, ' . $th->getMessage()
+            ], 500);
+        }
+
+        return response()->json([
+            'message' => 'Register account successfully.'
+        ], 201);
     }
 }
