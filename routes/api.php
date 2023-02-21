@@ -4,6 +4,7 @@ use App\Api\Controllers\Admin\AdminAuthController;
 use App\Api\Controllers\Admin\AdminFileController;
 use App\Api\Controllers\Admin\AdminProductCategoryController;
 use App\Api\Controllers\Admin\AdminProductController;
+use App\Api\Controllers\Client\ClientCartController;
 use App\Api\Controllers\Client\ClientProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,10 @@ Route::prefix('client')->group(function () {
     Route::prefix('products')->group(function () {
         Route::get('/', [ClientProductController::class, 'index']);
         Route::get('{product:slug}', [ClientProductController::class, 'show']);
+    });
+
+    Route::prefix('carts')->middleware('auth:sanctum')->group(function () {
+        Route::post('store', [ClientCartController::class, 'store']);
     });
 });
 
