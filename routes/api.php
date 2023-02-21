@@ -4,6 +4,7 @@ use App\Api\Controllers\Admin\AdminAuthController;
 use App\Api\Controllers\Admin\AdminFileController;
 use App\Api\Controllers\Admin\AdminProductCategoryController;
 use App\Api\Controllers\Admin\AdminProductController;
+use App\Api\Controllers\Client\ClientAuthController;
 use App\Api\Controllers\Client\ClientCartController;
 use App\Api\Controllers\Client\ClientProductController;
 use Illuminate\Http\Request;
@@ -25,6 +26,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('client')->group(function () {
+    Route::post('login', [ClientAuthController::class, 'login']);
+
     Route::prefix('products')->group(function () {
         Route::get('/', [ClientProductController::class, 'index']);
         Route::get('{product:slug}', [ClientProductController::class, 'show']);
