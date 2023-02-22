@@ -1,6 +1,7 @@
 <?php
 
 use App\Api\Controllers\Admin\AdminAuthController;
+use App\Api\Controllers\Admin\AdminBankController;
 use App\Api\Controllers\Admin\AdminFileController;
 use App\Api\Controllers\Admin\AdminProductCategoryController;
 use App\Api\Controllers\Admin\AdminProductController;
@@ -73,6 +74,14 @@ Route::prefix('admin')->group(function () {
 
         Route::prefix('users')->group(function () {
             Route::get('/', [AdminUserController::class, 'index']);
+        });
+
+        Route::prefix('banks')->group(function () {
+            Route::get('/', [AdminBankController::class, 'index']);
+            Route::post('store', [AdminBankController::class, 'store']);
+            Route::get('{bank}/show', [AdminBankController::class, 'show']);
+            Route::patch('{bank}/update', [AdminBankController::class, 'update']);
+            Route::delete('{bank}/delete', [AdminBankController::class, 'destroy']);
         });
     });
 });
