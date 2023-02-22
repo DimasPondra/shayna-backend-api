@@ -4,6 +4,7 @@ use App\Api\Controllers\Admin\AdminAuthController;
 use App\Api\Controllers\Admin\AdminFileController;
 use App\Api\Controllers\Admin\AdminProductCategoryController;
 use App\Api\Controllers\Admin\AdminProductController;
+use App\Api\Controllers\Admin\AdminUserController;
 use App\Api\Controllers\Client\ClientAuthController;
 use App\Api\Controllers\Client\ClientCartController;
 use App\Api\Controllers\Client\ClientProductController;
@@ -68,6 +69,10 @@ Route::prefix('admin')->group(function () {
             Route::get('{product}/show', [AdminProductController::class, 'show']);
             Route::patch('{product}/update', [AdminProductController::class, 'update']);
             Route::delete('{product}/delete', [AdminProductController::class, 'destroy']);
+        });
+
+        Route::prefix('users')->group(function () {
+            Route::get('/', [AdminUserController::class, 'index']);
         });
     });
 });
