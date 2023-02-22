@@ -29,4 +29,16 @@ class CartRepository
 
         return $cart;
     }
+
+    public function getTotal($user_id)
+    {
+        $carts = $this->get(['user_id', $user_id]);
+        $total = 0;
+
+        foreach ($carts as $cart) {
+            $total += $cart->product->price;
+        }
+
+        return $total;
+    }
 }

@@ -9,6 +9,7 @@ use App\Api\Controllers\Admin\AdminProductController;
 use App\Api\Controllers\Admin\AdminUserController;
 use App\Api\Controllers\Client\ClientAuthController;
 use App\Api\Controllers\Client\ClientCartController;
+use App\Api\Controllers\Client\ClientCheckoutController;
 use App\Api\Controllers\Client\ClientProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,10 @@ Route::prefix('client')->group(function () {
         Route::prefix('carts')->group(function () {
             Route::get('/', [ClientCartController::class, 'index']);
             Route::post('store', [ClientCartController::class, 'store']);
+        });
+
+        Route::prefix('checkout')->group(function () {
+            Route::post('store', [ClientCheckoutController::class, 'store']);
         });
 
         Route::post('logout', [ClientAuthController::class, 'logout']);
