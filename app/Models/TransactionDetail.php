@@ -23,4 +23,10 @@ class TransactionDetail extends Model
     {
         return $this->belongsTo(Transaction::class);
     }
+
+    /** Accessor */
+    public function getFormatPriceAttribute()
+    {
+        return number_format($this->price, 0, ',', '.');
+    }
 }

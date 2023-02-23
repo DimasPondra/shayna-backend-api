@@ -13,7 +13,7 @@ class ProductResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'price' => $this->price,
+            'price' => 'Rp ' . $this->format_price,
 
             'category' => $this->when(
                 RequestHelper::doesQueryParamsHasValue($request->query('include'), 'category'),

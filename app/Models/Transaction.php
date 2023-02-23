@@ -40,4 +40,20 @@ class Transaction extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function transactionDetails()
+    {
+        return $this->hasMany(TransactionDetail::class);
+    }
+
+    /** Accessor */
+    public function getFormatSubTotalAttribute()
+    {
+        return number_format($this->sub_total, 0, ',', '.');
+    }
+
+    public function getFormatTotalAttribute()
+    {
+        return number_format($this->total, 0, ',', '.');
+    }
 }
