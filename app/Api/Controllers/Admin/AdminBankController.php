@@ -27,7 +27,7 @@ class AdminBankController extends Controller
             'search' => [
                 'name' => $request->name
             ],
-            'paginate' => $request->paginate
+            'paginate' => $request->per_page
         ]);
 
         return new BankResourceCollection($banks);
