@@ -6,6 +6,7 @@ use App\Api\Controllers\Admin\AdminBankController;
 use App\Api\Controllers\Admin\AdminFileController;
 use App\Api\Controllers\Admin\AdminProductCategoryController;
 use App\Api\Controllers\Admin\AdminProductController;
+use App\Api\Controllers\Admin\AdminTransactionController;
 use App\Api\Controllers\Admin\AdminUserController;
 use App\Api\Controllers\Client\ClientAuthController;
 use App\Api\Controllers\Client\ClientCartController;
@@ -102,6 +103,11 @@ Route::prefix('admin')->group(function () {
             Route::get('{bankAccount}/show', [AdminBankAccountController::class, 'show']);
             Route::patch('{bankAccount}/update', [AdminBankAccountController::class, 'update']);
             Route::delete('{bankAccount}/delete', [AdminBankAccountController::class, 'destroy']);
+        });
+
+        Route::prefix('transactions')->group(function () {
+            Route::get('/', [AdminTransactionController::class, 'index']);
+            Route::get('{transaction}/show', [AdminTransactionController::class, 'show']);
         });
     });
 });
