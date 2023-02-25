@@ -24,7 +24,7 @@ class AdminUserController extends Controller
                 'name' => $request->name,
                 'role' => User::ROLE_USER
             ],
-            'paginate' => $request->paginate
+            'paginate' => $request->per_page
         ]);
 
         return new UserResourceCollection($users);
