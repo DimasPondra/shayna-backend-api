@@ -3,6 +3,7 @@
 use App\Api\Controllers\Admin\AdminAuthController;
 use App\Api\Controllers\Admin\AdminBankAccountController;
 use App\Api\Controllers\Admin\AdminBankController;
+use App\Api\Controllers\Admin\AdminDashboardController;
 use App\Api\Controllers\Admin\AdminFileController;
 use App\Api\Controllers\Admin\AdminProductCategoryController;
 use App\Api\Controllers\Admin\AdminProductController;
@@ -109,6 +110,8 @@ Route::prefix('admin')->group(function () {
             Route::get('/', [AdminTransactionController::class, 'index']);
             Route::get('{transaction}/show', [AdminTransactionController::class, 'show']);
         });
+
+        Route::get('dashboard', [AdminDashboardController::class, 'index']);
     });
 });
 
