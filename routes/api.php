@@ -104,6 +104,8 @@ Route::prefix('admin')->group(function () {
             Route::get('{bankAccount}/show', [AdminBankAccountController::class, 'show']);
             Route::patch('{bankAccount}/update', [AdminBankAccountController::class, 'update']);
             Route::delete('{bankAccount}/delete', [AdminBankAccountController::class, 'destroy']);
+
+            Route::patch('{bankAccount}/change-status', [AdminBankAccountController::class, 'changeStatus']);
         });
 
         Route::prefix('transactions')->group(function () {

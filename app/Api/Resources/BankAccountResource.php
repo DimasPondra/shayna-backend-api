@@ -13,6 +13,7 @@ class BankAccountResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'number' => $this->number,
+            'status' => $this->status,
 
             'bank' => $this->when(
                 RequestHelper::doesQueryParamsHasValue($request->query('include'), 'bank'),

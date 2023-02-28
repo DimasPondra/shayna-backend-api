@@ -105,4 +105,38 @@ class AdminBankAccountController extends Controller
             'message' => 'Bank account successfully deleted.'
         ], 201);
     }
+
+    public function changeStatus(BankAccount $bankAccount)
+    {
+        try {
+            DB::beginTransaction();
+
+            if ($bankAccount->status == BankAccount::STATUS_ACTIVE) {
+                return response()->json([
+                    'message' => 'Account bank is active cannot to change.'
+                ], 400);
+            }
+
+            $data = BankAccount::where('status', BankAccount::STATUS_ACTIVE)->first();
+            $this->bankAccountRepository->store($data->fill([
+                'status' => BankAccount::STATUS_INACTIVE
+            ]));
+
+            $this->bankAccountRepository->store($bankAccount->fill([
+                'status' => BankAccount::STATUS_ACTIVE
+            ]));
+
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return response()->json([
+                'message' => 'Something went wrong, ' . $th->getMessage()
+            ], 500);
+        }
+
+        return response()->json([
+            'message' => 'Bank account successfully updated.'
+        ], 201);
+    }
 }

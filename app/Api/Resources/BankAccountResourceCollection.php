@@ -15,6 +15,7 @@ class BankAccountResourceCollection extends ResourceCollection
                 'id' => $bankAccount->id,
                 'name' => $bankAccount->name,
                 'number' => $bankAccount->number,
+                'status' => $bankAccount->status,
 
                 'bank' => $this->when(
                     RequestHelper::doesQueryParamsHasValue($request->query('include'), 'bank'),
