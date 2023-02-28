@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('number');
+            $table->string('status')->default('inactive');
             $table->unsignedBigInteger('bank_id');
 
             $table->timestamps();

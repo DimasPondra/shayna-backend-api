@@ -9,8 +9,11 @@ class BankAccount extends Model
 {
     use HasFactory;
 
+    const STATUS_ACTIVE = 'active';
+    const STATUS_INACTIVE = 'inactive';
+
     protected $fillable = [
-        'name', 'number', 'bank_id'
+        'name', 'number', 'status', 'bank_id'
     ];
 
     /** Relationship */
