@@ -61,7 +61,10 @@ class ClientAuthController extends Controller
                 'password' => bcrypt($request->password)
             ]);
 
-            $data = $request->only(['name', 'email', 'password']);
+            $data = $request->only([
+                'name', 'email', 'password',
+                'phone_number', 'address'
+            ]);
 
             $user = new User();
             $this->userRepository->store($user->fill($data));
