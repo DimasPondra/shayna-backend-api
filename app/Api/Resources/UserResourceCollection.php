@@ -13,7 +13,9 @@ class UserResourceCollection extends ResourceCollection
             return [
                 'id' => $user->id,
                 'name' => $user->name,
-                'email' => $user->email
+                'email' => $user->email,
+                'phone' => $user->phone_number,
+                'address' => $user->address
             ];
         });
 
