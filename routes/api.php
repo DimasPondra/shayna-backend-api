@@ -111,6 +111,7 @@ Route::prefix('admin')->group(function () {
         Route::prefix('transactions')->group(function () {
             Route::get('/', [AdminTransactionController::class, 'index']);
             Route::get('{transaction}/show', [AdminTransactionController::class, 'show']);
+            Route::patch('{transaction}/update', [AdminTransactionController::class, 'update']);
         });
 
         Route::get('dashboard', [AdminDashboardController::class, 'index']);
