@@ -32,6 +32,8 @@ class ClientTransactionController extends Controller
 
     public function show(Transaction $transaction)
     {
+        $this->authorize('view', $transaction);
+
         return new TransactionResource($transaction);
     }
 }
