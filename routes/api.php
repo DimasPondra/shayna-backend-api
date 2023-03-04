@@ -98,7 +98,7 @@ Route::prefix('admin')->group(function () {
             Route::delete('{bank}/delete', [AdminBankController::class, 'destroy']);
         });
 
-        Route::prefix('bank_accounts')->group(function () {
+        Route::prefix('bank-accounts')->group(function () {
             Route::get('/', [AdminBankAccountController::class, 'index']);
             Route::post('store', [AdminBankAccountController::class, 'store']);
             Route::get('{bankAccount}/show', [AdminBankAccountController::class, 'show']);
@@ -106,6 +106,7 @@ Route::prefix('admin')->group(function () {
             Route::delete('{bankAccount}/delete', [AdminBankAccountController::class, 'destroy']);
 
             Route::patch('{bankAccount}/change-status', [AdminBankAccountController::class, 'changeStatus']);
+            Route::get('active-status', [AdminBankAccountController::class, 'getActiveStatus']);
         });
 
         Route::prefix('transactions')->group(function () {

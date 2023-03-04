@@ -139,4 +139,11 @@ class AdminBankAccountController extends Controller
             'message' => 'Bank account successfully updated.'
         ], 201);
     }
+
+    public function getActiveStatus()
+    {
+        $bankAccount = BankAccount::where('status', BankAccount::STATUS_ACTIVE)->first();
+
+        return new BankAccountResource($bankAccount);
+    }
 }
