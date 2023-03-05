@@ -10,6 +10,7 @@ use App\Api\Controllers\Admin\AdminProductController;
 use App\Api\Controllers\Admin\AdminTransactionController;
 use App\Api\Controllers\Admin\AdminUserController;
 use App\Api\Controllers\Client\ClientAuthController;
+use App\Api\Controllers\Client\ClientBankAccountController;
 use App\Api\Controllers\Client\ClientCartController;
 use App\Api\Controllers\Client\ClientCheckoutController;
 use App\Api\Controllers\Client\ClientProductController;
@@ -42,6 +43,10 @@ Route::prefix('client')->group(function () {
     });
 
     Route::middleware('auth:sanctum', 'abilities:client')->group(function () {
+        Route::prefix('bank-accounts')->group(function () {
+            Route::get('active-status', [ClientBankAccountController::class, 'getActiveStatus']);
+        });
+
         Route::prefix('carts')->group(function () {
             Route::get('/', [ClientCartController::class, 'index']);
             Route::post('store', [ClientCartController::class, 'store']);
@@ -106,7 +111,6 @@ Route::prefix('admin')->group(function () {
             Route::delete('{bankAccount}/delete', [AdminBankAccountController::class, 'destroy']);
 
             Route::patch('{bankAccount}/change-status', [AdminBankAccountController::class, 'changeStatus']);
-            Route::get('active-status', [AdminBankAccountController::class, 'getActiveStatus']);
         });
 
         Route::prefix('transactions')->group(function () {
