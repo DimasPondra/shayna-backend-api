@@ -50,6 +50,7 @@ Route::prefix('client')->group(function () {
         Route::prefix('carts')->group(function () {
             Route::get('/', [ClientCartController::class, 'index']);
             Route::post('store', [ClientCartController::class, 'store']);
+            Route::delete('{cart}/delete', [ClientCartController::class, 'destroy']);
         });
 
         Route::prefix('checkout')->group(function () {
