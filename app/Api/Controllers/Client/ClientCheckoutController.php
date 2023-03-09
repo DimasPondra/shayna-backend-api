@@ -2,6 +2,7 @@
 
 namespace App\Api\Controllers\Client;
 
+use App\Api\Resources\TransactionResource;
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
@@ -74,7 +75,11 @@ class ClientCheckoutController extends Controller
         }
 
         return response()->json([
-            'message' => 'Checkout successfully created.'
+            'message' => 'Checkout successfully created.',
+            'data' => [
+                'transaction_id' => $trx->id,
+                'transaction_uuid' => $trx->uuid
+            ]
         ], 201);
     }
 }
