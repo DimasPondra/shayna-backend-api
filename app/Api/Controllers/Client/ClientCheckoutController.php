@@ -40,7 +40,7 @@ class ClientCheckoutController extends Controller
             if (count($carts) == 0) {
                 return response()->json([
                     'message' => 'Your cart has no items.'
-                ]);
+                ], 400);
             }
 
             $trxData = [
