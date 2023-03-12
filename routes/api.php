@@ -3,6 +3,7 @@
 use App\Api\Controllers\Admin\AdminAuthController;
 use App\Api\Controllers\Admin\AdminBankAccountController;
 use App\Api\Controllers\Admin\AdminBankController;
+use App\Api\Controllers\Admin\AdminBannerController;
 use App\Api\Controllers\Admin\AdminDashboardController;
 use App\Api\Controllers\Admin\AdminFileController;
 use App\Api\Controllers\Admin\AdminProductCategoryController;
@@ -121,6 +122,12 @@ Route::prefix('admin')->group(function () {
         });
 
         Route::get('dashboard', [AdminDashboardController::class, 'index']);
+
+        Route::prefix('banners')->group(function () {
+            Route::get('/', [AdminBannerController::class, 'index']);
+            Route::post('store', [AdminBannerController::class, 'store']);
+            Route::delete('{banner}/delete', [AdminBannerController::class, 'destroy']);
+        });
     });
 });
 
