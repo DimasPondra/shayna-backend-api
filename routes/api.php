@@ -12,6 +12,7 @@ use App\Api\Controllers\Admin\AdminTransactionController;
 use App\Api\Controllers\Admin\AdminUserController;
 use App\Api\Controllers\Client\ClientAuthController;
 use App\Api\Controllers\Client\ClientBankAccountController;
+use App\Api\Controllers\Client\ClientBannerController;
 use App\Api\Controllers\Client\ClientCartController;
 use App\Api\Controllers\Client\ClientCheckoutController;
 use App\Api\Controllers\Client\ClientProductController;
@@ -37,6 +38,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('client')->group(function () {
     Route::post('login', [ClientAuthController::class, 'login']);
     Route::post('register', [ClientAuthController::class, 'register']);
+
+    Route::get('banners', [ClientBannerController::class, 'index']);
 
     Route::prefix('products')->group(function () {
         Route::get('/', [ClientProductController::class, 'index']);

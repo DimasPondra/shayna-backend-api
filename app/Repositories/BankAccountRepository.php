@@ -20,7 +20,7 @@ class BankAccountRepository
                 return $query->where('name', 'LIKE', '%' . $params['search']['name'] . '%');
             });
 
-        if ($params['paginate']) {
+        if (!empty($params['paginate'])) {
             return $bankAccounts->paginate($params['paginate']);
         }
 

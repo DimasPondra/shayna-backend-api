@@ -15,9 +15,12 @@ class BannerRepository
 
     public function get($params = [])
     {
-        $banners = $this->model;
+        $banners = $this->model
+            ->when(!empty($params['limit']), function ($query) use ($params) {
+                return $query->limit($params['limit']);
+            });
 
-        if ($params['paginate']) {
+        if (!empty($params['paginate'])) {
             return $banners->paginate($params['paginate']);
         }
 
