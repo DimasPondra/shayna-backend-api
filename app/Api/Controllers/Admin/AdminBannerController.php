@@ -3,6 +3,7 @@
 namespace App\Api\Controllers\Admin;
 
 use App\Api\Requests\BannerStoreRequest;
+use App\Api\Resources\BannerResource;
 use App\Api\Resources\BannerResourceCollection;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
@@ -50,6 +51,11 @@ class AdminBannerController extends Controller
         return response()->json([
             'message' => 'Banner successfully created.'
         ], 201);
+    }
+
+    public function show(Banner $banner)
+    {
+        return new BannerResource($banner);
     }
 
     public function destroy(Banner $banner)

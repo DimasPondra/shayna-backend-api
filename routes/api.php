@@ -126,6 +126,7 @@ Route::prefix('admin')->group(function () {
         Route::prefix('banners')->group(function () {
             Route::get('/', [AdminBannerController::class, 'index']);
             Route::post('store', [AdminBannerController::class, 'store']);
+            Route::get('{banner}/show', [AdminBannerController::class, 'show']);
             Route::delete('{banner}/delete', [AdminBannerController::class, 'destroy']);
         });
     });
