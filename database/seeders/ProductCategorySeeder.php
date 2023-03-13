@@ -17,12 +17,24 @@ class ProductCategorySeeder extends Seeder
     {
         $categories = [
             [
-                'name' => 'Celana',
-                'slug' => 'celana'
+                'name' => 'Shirt',
+                'slug' => 'shirt'
             ],
             [
-                'name' => 'Baju',
-                'slug' => 'baju'
+                'name' => 'Sweater',
+                'slug' => 'sweater'
+            ],
+            [
+                'name' => 'Dress',
+                'slug' => 'dress'
+            ],
+            [
+                'name' => 'Suit',
+                'slug' => 'suit'
+            ],
+            [
+                'name' => 'Jacket',
+                'slug' => 'jacket'
             ]
         ];
 

@@ -17,16 +17,16 @@ class BankSeeder extends Seeder
     {
         $banks = [
             [
-                'name' => 'BCA'
+                'name' => 'Axis Bank'
             ],
             [
-                'name' => 'BRI'
+                'name' => 'Deutsche Bank'
             ],
             [
-                'name' => 'BNI'
+                'name' => 'State Bank of Hyderabad'
             ],
             [
-                'name' => 'Mandiri'
+                'name' => 'UCO Bank'
             ]
         ];
 
