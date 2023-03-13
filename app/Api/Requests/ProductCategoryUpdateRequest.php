@@ -14,7 +14,7 @@ class ProductCategoryUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255'
+            'name' => 'required|string|max:255|unique:product_categories,name,'. $this->productCategory->id
         ];
     }
 }
