@@ -5,6 +5,7 @@ use App\Api\Controllers\Admin\AdminBankAccountController;
 use App\Api\Controllers\Admin\AdminBankController;
 use App\Api\Controllers\Admin\AdminBannerController;
 use App\Api\Controllers\Admin\AdminDashboardController;
+use App\Api\Controllers\Admin\AdminFeedController;
 use App\Api\Controllers\Admin\AdminFileController;
 use App\Api\Controllers\Admin\AdminProductCategoryController;
 use App\Api\Controllers\Admin\AdminProductController;
@@ -131,6 +132,12 @@ Route::prefix('admin')->group(function () {
             Route::post('store', [AdminBannerController::class, 'store']);
             Route::get('{banner}/show', [AdminBannerController::class, 'show']);
             Route::delete('{banner}/delete', [AdminBannerController::class, 'destroy']);
+        });
+
+        Route::prefix('feeds')->group(function () {
+            Route::get('/', [AdminFeedController::class, 'index']);
+            Route::post('store', [AdminFeedController::class, 'store']);
+            Route::delete('{feed}/delete', [AdminFeedController::class, 'destroy']);
         });
     });
 });
