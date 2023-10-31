@@ -70,6 +70,6 @@ class AdminFeedController extends Controller
 
         return response()->json([
             'message' => 'Feed successfully deleted.'
-        ], 201);
+        ], 200);
     }
 }

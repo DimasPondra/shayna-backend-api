@@ -82,7 +82,7 @@ class AdminBankAccountController extends Controller
 
         return response()->json([
             'message' => 'Bank account successfully updated.'
-        ], 201);
+        ], 200);
     }
 
     public function destroy(BankAccount $bankAccount)
@@ -103,7 +103,7 @@ class AdminBankAccountController extends Controller
 
         return response()->json([
             'message' => 'Bank account successfully deleted.'
-        ], 201);
+        ], 200);
     }
 
     public function changeStatus(BankAccount $bankAccount)
@@ -137,6 +137,6 @@ class AdminBankAccountController extends Controller
 
         return response()->json([
             'message' => 'Bank account successfully updated.'
-        ], 201);
+        ], 200);
     }
 }

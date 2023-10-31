@@ -76,6 +76,6 @@ class ClientCartController extends Controller
 
         return response()->json([
             'message' => 'Cart successfully deleted.'
-        ], 201);
+        ], 200);
     }
 }
