@@ -56,6 +56,6 @@ class AdminTransactionController extends Controller
 
         return response()->json([
             'message' => 'Transaction successfully updated.'
-        ], 201);
+        ], 200);
     }
 }

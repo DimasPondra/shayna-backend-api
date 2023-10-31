@@ -91,7 +91,7 @@ class AdminProductCategoryController extends Controller
 
         return response()->json([
             'message' => 'Product category successfully updated.'
-        ], 201);
+        ], 200);
     }
 
     public function destroy(ProductCategory $productCategory)
@@ -112,6 +112,6 @@ class AdminProductCategoryController extends Controller
 
         return response()->json([
             'message' => 'Product category successfully deleted.'
-        ], 201);
+        ], 200);
     }
 }

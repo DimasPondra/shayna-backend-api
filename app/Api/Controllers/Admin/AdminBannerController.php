@@ -82,6 +82,6 @@ class AdminBannerController extends Controller
 
         return response()->json([
             'message' => 'Banner successfully deleted.'
-        ], 201);
+        ], 200);
     }
 }

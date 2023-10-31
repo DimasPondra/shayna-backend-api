@@ -82,7 +82,7 @@ class AdminBankController extends Controller
 
         return response()->json([
             'message' => 'Bank successfully updated.'
-        ], 201);
+        ], 200);
     }
 
     public function destroy(Bank $bank)
@@ -103,6 +103,6 @@ class AdminBankController extends Controller
 
         return response()->json([
             'message' => 'Bank successfully deleted.'
-        ], 201);
+        ], 200);
     }
 }
